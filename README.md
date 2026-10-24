@@ -18,7 +18,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 ## 🛠️ Tech stack
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=java,js,nodejs,cpp,py,postgres,linux,bash,git,html,css,kali,docker,powershell,vscode&perline=8" />
+  <img src="https://skillicons.dev/icons?i=java,js,nodejs,cpp,py,postgres,linux,bash,git,html,css,kali,docker,powershell,vscode,qt&perline=8" />
 </p>
 
 ## 🔒 Security focus
