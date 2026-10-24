@@ -8,7 +8,7 @@
 
 ## 👋 About me
 
-I'm a **full-stack developer** and **cybersecurity specialist**. I build web applications from database to UI, and I make sure they're secure by design, not by accident.
+I'm a **full-stack developer** with a focus on **cybersecurity**. I build web applications from database to UI, and I make sure they're secure by design, not by accident.
 
 - 🔐 Interested in application security, pentesting, and secure architecture
 - 🌐 Learning to build web apps with security in mind
@@ -18,7 +18,7 @@ I'm a **full-stack developer** and **cybersecurity specialist**. I build web app
 ## 🛠️ Tech stack
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=java,js,nodejs,cpp,py,postgres,linux,bash,git,html,css,kali,docker,powershell,vscode" />
+  <img src="https://skillicons.dev/icons?i=java,js,nodejs,cpp,py,postgres,linux,bash,git,html,css,kali,docker,powershell,vscode&perline=8" />
 </p>
 
 ## 🔒 Security focus
@@ -28,15 +28,22 @@ I'm a **full-stack developer** and **cybersecurity specialist**. I build web app
 - Secure coding practices & code review
 - CTFs and hands-on labs (Hack The Box, TryHackMe)
 
+## 🚀 Featured projects
+
+<p align="center">
+  <a href="https://github.com/cameon8868/web_cybersecurity">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=cameon8868&repo=web_cybersecurity&theme=radical&hide_border=true" />
+  </a>
+</p>
+
 ## 📊 GitHub stats
 
 <p align="center">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=Cameon8868&show_icons=true&theme=radical&hide_border=true" />
+  <img height="160" src="https://github-readme-stats.vercel.app/api?username=cameon8868&show_icons=true&theme=radical&hide_border=true&include_all_commits=true" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Cameon8868&theme=radical&hide_border=true" />
+  <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
 </p>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:00ff9c&height=100&section=footer" width="100%" />
-
