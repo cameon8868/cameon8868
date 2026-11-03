@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="150" viewBox="0 0 495 150">
+  <rect x="0.5" y="0.5" width="494" height="149" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
+  <text x="25" y="35" font-family="Segoe UI, Ubuntu, sans-serif" font-size="18" font-weight="600" fill="#fe428e">Codeforces: ggca</text>
+  <text x="25" y="75" font-family="Segoe UI, Ubuntu, sans-serif" font-size="15" fill="#808080" font-weight="600">Newbie</text>
+  <text x="25" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Rating: 373 (max 373)</text>
+  <text x="25" y="122" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Max rank: Newbie</text>
+  <text x="300" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Solved: 1</text>
+  <text x="300" y="122" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Contribution: 0</text>
+</svg>
