@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="495" height="150" viewBox="0 0 495 150">
-  <rect x="0.5" y="0.5" width="494" height="149" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
-  <text x="25" y="35" font-family="Segoe UI, Ubuntu, sans-serif" font-size="18" font-weight="600" fill="#fe428e">Codeforces: ggca</text>
-  <text x="25" y="75" font-family="Segoe UI, Ubuntu, sans-serif" font-size="15" fill="#808080" font-weight="600">Newbie</text>
-  <text x="25" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Rating: 373 (max 373)</text>
-  <text x="25" y="122" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Max rank: Newbie</text>
-  <text x="300" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Solved: 1</text>
-  <text x="300" y="122" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Contribution: 0</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+  <rect x="0.5" y="0.5" width="494" height="194" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
+  <text x="25" y="35" font-family="Segoe UI, Ubuntu, sans-serif" font-size="20" font-weight="600" fill="#fe428e">Codeforces: ggca</text>
+  <text x="25" y="62" font-family="Segoe UI, Ubuntu, sans-serif" font-size="15" font-weight="600" fill="#808080">Newbie</text>
+  <text x="120" y="62" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#a9fef7">Rating 373 (max 373)</text>
+  <text x="25" y="108" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">1</text><text x="25" y="125" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">solved, all time</text><text x="185" y="108" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">1</text><text x="185" y="125" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">solved, last year</text><text x="345" y="108" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">0</text><text x="345" y="125" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">solved, last month</text><text x="25" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">1 d</text><text x="25" y="177" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">max streak, all time</text><text x="185" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">1 d</text><text x="185" y="177" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">max streak, last year</text><text x="345" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="600" fill="#a9fef7">0 d</text><text x="345" y="177" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" fill="#9aa4b2">max streak, last month</text>
 </svg>
