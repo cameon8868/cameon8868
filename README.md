@@ -75,9 +75,10 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 </p>
 
 ## 🕵️ TryHackMe
+## 🕵️ TryHackMe
 
 <p align="center">
   <a href="https://tryhackme.com/p/cammeonn">
-    <img src="./ПУТЬ/К/ФАЙЛУ" alt="TryHackMe badge" width="400" />
+    <img src="./assets/thm_propic.png" alt="TryHackMe badge" width="400" />
   </a>
 </p>
