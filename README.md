@@ -73,5 +73,3 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
     <img src="./assets/codeforces-stats.svg" alt="Codeforces stats" width="750" />
   </a>
 </p>
-
-## 🕵️ TryHackMe
