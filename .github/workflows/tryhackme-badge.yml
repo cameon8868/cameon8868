@@ -1,0 +1,23 @@
+name: Update TryHackMe Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # раз в сутки
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch TryHackMe badge
+        uses: DhanushNehru/tryhackme-badge-action-workflow@v1.0
+        with:
+          image_path: './assets/tryhackme-badge.png'
+          username: 'cammeonn'
+          user_id: 'ТВОЙ_ЧИСЛОВОЙ_ID'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
