@@ -77,6 +77,6 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 # 🕵️ TryHackMe
 <p align="center">
   <a href="https://tryhackme.com/p/cammeonn">
-    <img src="https://leetcard.jacoblin.cool/cameon8868?theme=dark&font=Fira%20Code&ext=heatmap" alt="LeetCode stats" />
+    <img src="https://cdn-images.tryhackme.com/public-profile/cammeonn/badge-dark-00d3c2111cf9.png" alt="cammeonn's TryHackMe badge." width="400">
   </a>
 </p>
