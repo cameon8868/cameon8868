@@ -68,8 +68,6 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 
 <p align="center">
   <a href="https://codeforces.com/profile/ggca">
-    <img src="./assets/codeforces-card.svg" alt="Codeforces stats" />
+    <img src="./assets/codeforces-activity.svg" alt="Codeforces activity" width="700" />
   </a>
 </p>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:00ff9c&height=100&section=footer" width="100%" />
