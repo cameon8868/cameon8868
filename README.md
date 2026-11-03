@@ -58,13 +58,17 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
   <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
 </p>
 
-## 🧩 Competitive programming
+## 🧩 LeedCode stats
+
+<h3>Leedcode</h3>
 
 <p align="center">
   <a href="https://leetcode.com/u/cameon8868/">
     <img src="https://leetcard.jacoblin.cool/cameon8868?theme=dark&font=Fira%20Code&ext=heatmap" alt="LeetCode stats" />
   </a>
 </p>
+
+##📊 Codeforces
 
 <p align="center">
   <a href="https://codeforces.com/profile/ggca">
