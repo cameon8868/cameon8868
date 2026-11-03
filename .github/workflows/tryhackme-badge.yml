@@ -1,36 +1,19 @@
-name: Update TryHackMe card
+name: Update TryHackMe Badge
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # раз в сутки
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  update-badge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Download profile card
-        run: |
-          mkdir -p assets
-          curl -sL -A "Mozilla/5.0" -o page.html -w "HTTP %{http_code}\n" "https://tryhackme.com/p/cammeonn"
-          echo "Page size: $(wc -c < page.html) bytes"
-          head -c 400 page.html
-          echo
-          URL=$(grep -oE 'https://cdn-images\.tryhackme\.com/public-profile/cammeonn/[A-Za-z0-9]+\.png' page.html | head -n1 || true)
-          echo "Card URL: $URL"
-          test -n "$URL"
-          curl -sL "$URL" -o assets/tryhackme-card.png
-
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/tryhackme-card.png
-          git diff --staged --quiet && exit 0
-          git commit -m "Update TryHackMe card"
-          git push
+      - uses: p4p1/tryhackme-badge-workflow@main
+        with:
+          username: "cammeonn"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
