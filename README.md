@@ -60,15 +60,13 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 
 ## 🧩 LeedCode stats
 
-<h3>Leedcode</h3>
-
 <p align="center">
   <a href="https://leetcode.com/u/cameon8868/">
     <img src="https://leetcard.jacoblin.cool/cameon8868?theme=dark&font=Fira%20Code&ext=heatmap" alt="LeetCode stats" />
   </a>
 </p>
 
-##📊 Codeforces
+## 📊 Codeforces
 
 <p align="center">
   <a href="https://codeforces.com/profile/ggca">
