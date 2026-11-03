@@ -24,11 +24,14 @@ jobs:
           test -n "$URL"
           curl -sL "$URL" -o assets/tryhackme-card.png
 
-      - name: Commit changes
+      - name: Download profile card
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/tryhackme-card.png
-          git diff --staged --quiet && exit 0
-          git commit -m "Update TryHackMe card"
-          git push
+          mkdir -p assets
+          curl -sL -A "Mozilla/5.0" -o page.html -w "HTTP %{http_code}\n" "https://tryhackme.com/p/cammeonn"
+          echo "Page size: $(wc -c < page.html) bytes"
+          head -c 400 page.html
+          echo
+          URL=$(grep -oE 'https://cdn-images\.tryhackme\.com/public-profile/cammeonn/[A-Za-z0-9]+\.png' page.html | head -n1 || true)
+          echo "Card URL: $URL"
+          test -n "$URL"
+          curl -sL "$URL" -o assets/tryhackme-card.png
