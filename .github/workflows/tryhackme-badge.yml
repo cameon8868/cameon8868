@@ -17,16 +17,6 @@ jobs:
       - name: Download profile card
         run: |
           mkdir -p assets
-          URL=$(curl -sL -A "Mozilla/5.0" "https://tryhackme.com/p/cammeonn" \
-            | grep -oE 'https://cdn-images\.tryhackme\.com/public-profile/cammeonn/[A-Za-z0-9]+\.png' \
-            | head -n1)
-          echo "Card URL: $URL"
-          test -n "$URL"
-          curl -sL "$URL" -o assets/tryhackme-card.png
-
-      - name: Download profile card
-        run: |
-          mkdir -p assets
           curl -sL -A "Mozilla/5.0" -o page.html -w "HTTP %{http_code}\n" "https://tryhackme.com/p/cammeonn"
           echo "Page size: $(wc -c < page.html) bytes"
           head -c 400 page.html
@@ -35,3 +25,12 @@ jobs:
           echo "Card URL: $URL"
           test -n "$URL"
           curl -sL "$URL" -o assets/tryhackme-card.png
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/tryhackme-card.png
+          git diff --staged --quiet && exit 0
+          git commit -m "Update TryHackMe card"
+          git push
