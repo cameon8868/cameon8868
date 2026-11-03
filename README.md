@@ -58,7 +58,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
   <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
 </p>
 
-## 🧩 LeedCode stats
+## 🧩 LeetCode stats
 
 <p align="center">
   <a href="https://leetcode.com/u/cameon8868/">
