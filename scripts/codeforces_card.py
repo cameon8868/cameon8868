@@ -7,7 +7,7 @@ from html import escape
 from pathlib import Path
 
 HANDLE = "ggca"
-OUT_DIR = Path("assets")
+OUT = Path("assets/codeforces-stats.svg")
 
 RANK_COLORS = {
     "newbie": "#808080",
@@ -66,50 +66,14 @@ def compute_stats(first):
     dates = list(first.values())
     year = {d for d in dates if d >= year_ago}
     month = {d for d in dates if d >= month_ago}
-    return {
-        "solved_all": len(dates),
-        "solved_year": sum(1 for d in dates if d >= year_ago),
-        "solved_month": sum(1 for d in dates if d >= month_ago),
-        "streak_all": max_streak(set(dates)),
-        "streak_year": max_streak(year),
-        "streak_month": max_streak(month),
-    }
-
-
-def stat(x, y, value, label):
-    return (
-        f'<text x="{x}" y="{y}" font-family="{FONT}" font-size="22" '
-        f'font-weight="600" fill="#a9fef7">{value}</text>'
-        f'<text x="{x}" y="{y + 17}" font-family="{FONT}" font-size="12" '
-        f'fill="#9aa4b2">{label}</text>'
-    )
-
-
-def build_card(user, st):
-    rank = user.get("rank", "unrated")
-    rating = user.get("rating", "—")
-    max_rating = user.get("maxRating", "—")
-    color = RANK_COLORS.get(rank, "#9aa4b2")
-
-    stats = "".join(
-        [
-            stat(25, 108, st["solved_all"], "solved, all time"),
-            stat(185, 108, st["solved_year"], "solved, last year"),
-            stat(345, 108, st["solved_month"], "solved, last month"),
-            stat(25, 160, f'{st["streak_all"]} d', "max streak, all time"),
-            stat(185, 160, f'{st["streak_year"]} d', "max streak, last year"),
-            stat(345, 160, f'{st["streak_month"]} d', "max streak, last month"),
-        ]
-    )
-
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
-  <rect x="0.5" y="0.5" width="494" height="194" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
-  <text x="25" y="35" font-family="{FONT}" font-size="20" font-weight="600" fill="#fe428e">Codeforces: {escape(user["handle"])}</text>
-  <text x="25" y="62" font-family="{FONT}" font-size="15" font-weight="600" fill="{color}">{escape(rank.title())}</text>
-  <text x="120" y="62" font-family="{FONT}" font-size="14" fill="#a9fef7">Rating {rating} (max {max_rating})</text>
-  {stats}
-</svg>
-"""
+    return [
+        (len(dates), "solved, all time"),
+        (len(year), "solved, year"),
+        (len(month), "solved, month"),
+        (f"{max_streak(set(dates))} d", "streak, all time"),
+        (f"{max_streak(year)} d", "streak, year"),
+        (f"{max_streak(month)} d", "streak, month"),
+    ]
 
 
 def level_color(n):
@@ -124,19 +88,38 @@ def level_color(n):
     return "#39d353"
 
 
-def build_heatmap(handle, first):
+def build_svg(user, first):
     today = datetime.now(timezone.utc).date()
     start = today - timedelta(weeks=52)
     start -= timedelta(days=start.weekday())  # понедельник
 
     per_day = Counter(first.values())
-
     step, size = 13, 10
-    left, top = 25, 68
+    left = 25
     weeks = (today - start).days // 7 + 1
     width = left + weeks * step + 25
-    height = 200
+    height = 330
+    inner = width - 2 * left
 
+    rank = user.get("rank", "unrated")
+    rating = user.get("rating", "—")
+    max_rating = user.get("maxRating", "—")
+    color = RANK_COLORS.get(rank, "#9aa4b2")
+
+    # --- шесть значений ---
+    col_w = inner / 6
+    stats = []
+    for i, (value, label) in enumerate(compute_stats(first)):
+        x = left + i * col_w
+        stats.append(
+            f'<text x="{x:.0f}" y="118" font-family="{FONT}" font-size="22" '
+            f'font-weight="600" fill="#a9fef7">{value}</text>'
+            f'<text x="{x:.0f}" y="136" font-family="{FONT}" font-size="11" '
+            f'fill="#9aa4b2">{label}</text>'
+        )
+
+    # --- сетка активности ---
+    top = 204
     total = 0
     cells, months = [], []
     last_month = None
@@ -144,7 +127,7 @@ def build_heatmap(handle, first):
         week_start = start + timedelta(weeks=col)
         if week_start.month != last_month:
             months.append(
-                f'<text x="{left + col * step}" y="58" font-family="{FONT}" '
+                f'<text x="{left + col * step}" y="196" font-family="{FONT}" '
                 f'font-size="11" fill="#a9fef7">{week_start.strftime("%b")}</text>'
             )
             last_month = week_start.month
@@ -160,23 +143,29 @@ def build_heatmap(handle, first):
                 f"<title>{d.isoformat()}: {n} solved</title></rect>"
             )
 
-    legend_x = width - 25 - 5 * step - 60
+    legend_x = width - left - 5 * step - 60
     legend = [
-        f'<text x="{legend_x}" y="185" font-family="{FONT}" font-size="11" fill="#a9fef7">Less</text>'
+        f'<text x="{legend_x}" y="313" font-family="{FONT}" font-size="11" fill="#a9fef7">Less</text>'
     ]
     for i, n in enumerate([0, 1, 2, 4, 7]):
         legend.append(
-            f'<rect x="{legend_x + 30 + i * step}" y="176" width="{size}" height="{size}" '
+            f'<rect x="{legend_x + 30 + i * step}" y="304" width="{size}" height="{size}" '
             f'rx="2" fill="{level_color(n)}"/>'
         )
     legend.append(
-        f'<text x="{legend_x + 30 + 5 * step + 3}" y="185" font-family="{FONT}" '
+        f'<text x="{legend_x + 30 + 5 * step + 3}" y="313" font-family="{FONT}" '
         f'font-size="11" fill="#a9fef7">More</text>'
     )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
-  <text x="25" y="30" font-family="{FONT}" font-size="16" font-weight="600" fill="#fe428e">{escape(handle)}: {total} solved in the last year</text>
+  <text x="{left}" y="45" font-family="{FONT}" font-size="24" font-weight="600" fill="#fe428e">Codeforces: {escape(user["handle"])}</text>
+  <text x="{width - left}" y="35" text-anchor="end" font-family="{FONT}" font-size="16" font-weight="600" fill="{color}">{escape(rank.title())}</text>
+  <text x="{width - left}" y="56" text-anchor="end" font-family="{FONT}" font-size="13" fill="#a9fef7">Rating {rating} (max {max_rating})</text>
+  <line x1="{left}" y1="78" x2="{width - left}" y2="78" stroke="#e4e2e2" stroke-opacity="0.15"/>
+  {"".join(stats)}
+  <line x1="{left}" y1="154" x2="{width - left}" y2="154" stroke="#e4e2e2" stroke-opacity="0.15"/>
+  <text x="{left}" y="177" font-family="{FONT}" font-size="14" font-weight="600" fill="#fe428e">{total} solved in the last year</text>
   {"".join(months)}
   {"".join(cells)}
   {"".join(legend)}
@@ -187,11 +176,9 @@ def build_heatmap(handle, first):
 user = api("user.info", handles=HANDLE)[0]
 subs = api("user.status", handle=HANDLE)
 first = first_solves(subs)
-stats = compute_stats(first)
 
-OUT_DIR.mkdir(parents=True, exist_ok=True)
-(OUT_DIR / "codeforces-card.svg").write_text(build_card(user, stats), encoding="utf-8")
-(OUT_DIR / "codeforces-activity.svg").write_text(
-    build_heatmap(user["handle"], first), encoding="utf-8"
-)
-print("Saved card and activity")
+print("Solved problems:", sorted((str(k), str(v)) for k, v in first.items()))
+
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(build_svg(user, first), encoding="utf-8")
+print("Saved", OUT)
