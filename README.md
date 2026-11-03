@@ -6,6 +6,18 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00FF9C&center=true&vCenter=true&width=500&lines=Full-Stack+Developer;Cybersecurity+Enthusiast;Building+secure+software" alt="Typing SVG" />
 </p>
 
+<p align="center">
+  <a href="https://leetcode.com/u/cameon8868/">
+    <img src="https://img.shields.io/badge/LeetCode-cameon8868-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" alt="LeetCode" />
+  </a>
+  <a href="https://tryhackme.com/p/cammeonn">
+    <img src="https://img.shields.io/badge/TryHackMe-cammeonn-212C42?style=for-the-badge&logo=tryhackme&logoColor=white" alt="TryHackMe" />
+  </a>
+  <a href="https://codeforces.com/profile/ggca">
+    <img src="https://img.shields.io/badge/Codeforces-ggca-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces" />
+  </a>
+</p>
+
 ## 👋 About me
 
 I'm a **full-stack developer** with a focus on **cybersecurity**. I build web applications from database to UI, and I make sure they're secure by design, not by accident.
@@ -26,7 +38,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 - Web application security (OWASP Top 10)
 - Penetration testing & vulnerability research
 - Secure coding practices & code review
-- CTFs and hands-on labs (Hack The Box, TryHackMe)
+- CTFs and hands-on labs: [TryHackMe](https://tryhackme.com/p/cammeonn), Hack The Box
 
 ## 🚀 Featured projects
 
@@ -44,6 +56,20 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 
 <p align="center">
   <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
+</p>
+
+## 🧩 Competitive programming
+
+<p align="center">
+  <a href="https://leetcode.com/u/cameon8868/">
+    <img src="https://leetcard.jacoblin.cool/cameon8868?theme=dark&font=Fira%20Code&ext=heatmap" alt="LeetCode stats" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://codeforces.com/profile/ggca">
+    <img src="./assets/codeforces-card.svg" alt="Codeforces stats" />
+  </a>
 </p>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:00ff9c&height=100&section=footer" width="100%" />
