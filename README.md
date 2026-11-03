@@ -50,9 +50,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 
 ## 📊 GitHub stats
 
-<p align="center">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=cameon8868&show_icons=true&theme=radical&hide_border=true&include_all_commits=true" />
-</p>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cameon8868&layout=compact&theme=radical" />
 
 <p align="center">
   <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
