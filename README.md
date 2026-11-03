@@ -66,7 +66,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
   </a>
 </p>
 
-## 📊 Codeforces
+## 📊 Codeforces stats
 
 <p align="center">
   <a href="https://codeforces.com/profile/ggca">
@@ -74,10 +74,10 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
   </a>
 </p>
 
-## 🕵️ TryHackMe stats
+## 🕵️ TryHackMe
 
 <p align="center">
   <a href="https://tryhackme.com/p/cammeonn">
-    <img src="./assets/tryhackme-card.png" alt="TryHackMe card" width="600" />
+    <img src="./ПУТЬ/К/ФАЙЛУ" alt="TryHackMe badge" width="400" />
   </a>
 </p>
