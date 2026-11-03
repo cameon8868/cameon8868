@@ -52,9 +52,9 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cameon8868&layout=compact&theme=radical" />
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" />
-</p>
+<p align="center"><img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=cameon8868&theme=radical" /></p>
+
+<p align="center"><img src="https://streak-stats.demolab.com/?user=cameon8868&theme=radical&hide_border=true" /></p>
 
 ## 🧩 LeetCode stats
 
