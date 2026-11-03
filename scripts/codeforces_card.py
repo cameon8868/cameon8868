@@ -34,26 +34,80 @@ def api(method, **params):
     return data["result"]
 
 
-def build_card(user, subs):
-    solved = {
-        (s["problem"].get("contestId"), s["problem"]["index"])
-        for s in subs
-        if s.get("verdict") == "OK"
+def first_solves(subs):
+    """Задача -> дата первого успешного решения (UTC)."""
+    first = {}
+    for s in sorted(subs, key=lambda s: s["creationTimeSeconds"]):
+        if s.get("verdict") != "OK":
+            continue
+        p = s["problem"]
+        key = (p.get("contestId"), p["index"])
+        if key not in first:
+            first[key] = datetime.fromtimestamp(
+                s["creationTimeSeconds"], timezone.utc
+            ).date()
+    return first
+
+
+def max_streak(days):
+    best = cur = 0
+    prev = None
+    for d in sorted(days):
+        cur = cur + 1 if prev and (d - prev).days == 1 else 1
+        best = max(best, cur)
+        prev = d
+    return best
+
+
+def compute_stats(first):
+    today = datetime.now(timezone.utc).date()
+    year_ago = today - timedelta(days=365)
+    month_ago = today - timedelta(days=30)
+    dates = list(first.values())
+    year = {d for d in dates if d >= year_ago}
+    month = {d for d in dates if d >= month_ago}
+    return {
+        "solved_all": len(dates),
+        "solved_year": sum(1 for d in dates if d >= year_ago),
+        "solved_month": sum(1 for d in dates if d >= month_ago),
+        "streak_all": max_streak(set(dates)),
+        "streak_year": max_streak(year),
+        "streak_month": max_streak(month),
     }
+
+
+def stat(x, y, value, label):
+    return (
+        f'<text x="{x}" y="{y}" font-family="{FONT}" font-size="22" '
+        f'font-weight="600" fill="#a9fef7">{value}</text>'
+        f'<text x="{x}" y="{y + 17}" font-family="{FONT}" font-size="12" '
+        f'fill="#9aa4b2">{label}</text>'
+    )
+
+
+def build_card(user, st):
     rank = user.get("rank", "unrated")
-    max_rank = user.get("maxRank", "unrated")
     rating = user.get("rating", "—")
     max_rating = user.get("maxRating", "—")
     color = RANK_COLORS.get(rank, "#9aa4b2")
 
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="495" height="150" viewBox="0 0 495 150">
-  <rect x="0.5" y="0.5" width="494" height="149" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
-  <text x="25" y="35" font-family="{FONT}" font-size="18" font-weight="600" fill="#fe428e">Codeforces: {escape(user["handle"])}</text>
-  <text x="25" y="75" font-family="{FONT}" font-size="15" fill="{color}" font-weight="600">{escape(rank.title())}</text>
-  <text x="25" y="100" font-family="{FONT}" font-size="14" fill="#a9fef7">Rating: {rating} (max {max_rating})</text>
-  <text x="25" y="122" font-family="{FONT}" font-size="14" fill="#a9fef7">Max rank: {escape(max_rank.title())}</text>
-  <text x="300" y="100" font-family="{FONT}" font-size="14" fill="#a9fef7">Solved: {len(solved)}</text>
-  <text x="300" y="122" font-family="{FONT}" font-size="14" fill="#a9fef7">Contribution: {user.get("contribution", 0)}</text>
+    stats = "".join(
+        [
+            stat(25, 108, st["solved_all"], "solved, all time"),
+            stat(185, 108, st["solved_year"], "solved, last year"),
+            stat(345, 108, st["solved_month"], "solved, last month"),
+            stat(25, 160, f'{st["streak_all"]} d', "max streak, all time"),
+            stat(185, 160, f'{st["streak_year"]} d', "max streak, last year"),
+            stat(345, 160, f'{st["streak_month"]} d', "max streak, last month"),
+        ]
+    )
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+  <rect x="0.5" y="0.5" width="494" height="194" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
+  <text x="25" y="35" font-family="{FONT}" font-size="20" font-weight="600" fill="#fe428e">Codeforces: {escape(user["handle"])}</text>
+  <text x="25" y="62" font-family="{FONT}" font-size="15" font-weight="600" fill="{color}">{escape(rank.title())}</text>
+  <text x="120" y="62" font-family="{FONT}" font-size="14" fill="#a9fef7">Rating {rating} (max {max_rating})</text>
+  {stats}
 </svg>
 """
 
@@ -70,15 +124,12 @@ def level_color(n):
     return "#39d353"
 
 
-def build_heatmap(subs):
+def build_heatmap(handle, first):
     today = datetime.now(timezone.utc).date()
     start = today - timedelta(weeks=52)
-    start -= timedelta(days=start.weekday())  # начало недели (понедельник)
+    start -= timedelta(days=start.weekday())  # понедельник
 
-    per_day = Counter(
-        datetime.fromtimestamp(s["creationTimeSeconds"], timezone.utc).date()
-        for s in subs
-    )
+    per_day = Counter(first.values())
 
     step, size = 13, 10
     left, top = 25, 68
@@ -106,7 +157,7 @@ def build_heatmap(subs):
             cells.append(
                 f'<rect x="{left + col * step}" y="{top + row * step}" '
                 f'width="{size}" height="{size}" rx="2" fill="{level_color(n)}">'
-                f"<title>{d.isoformat()}: {n} submissions</title></rect>"
+                f"<title>{d.isoformat()}: {n} solved</title></rect>"
             )
 
     legend_x = width - 25 - 5 * step - 60
@@ -125,7 +176,7 @@ def build_heatmap(subs):
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="8" fill="#141321" stroke="#e4e2e2" stroke-opacity="0.2"/>
-  <text x="25" y="30" font-family="{FONT}" font-size="16" font-weight="600" fill="#fe428e">{total} submissions in the last year</text>
+  <text x="25" y="30" font-family="{FONT}" font-size="16" font-weight="600" fill="#fe428e">{escape(handle)}: {total} solved in the last year</text>
   {"".join(months)}
   {"".join(cells)}
   {"".join(legend)}
@@ -135,8 +186,12 @@ def build_heatmap(subs):
 
 user = api("user.info", handles=HANDLE)[0]
 subs = api("user.status", handle=HANDLE)
+first = first_solves(subs)
+stats = compute_stats(first)
 
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-(OUT_DIR / "codeforces-card.svg").write_text(build_card(user, subs), encoding="utf-8")
-(OUT_DIR / "codeforces-activity.svg").write_text(build_heatmap(subs), encoding="utf-8")
+(OUT_DIR / "codeforces-card.svg").write_text(build_card(user, stats), encoding="utf-8")
+(OUT_DIR / "codeforces-activity.svg").write_text(
+    build_heatmap(user["handle"], first), encoding="utf-8"
+)
 print("Saved card and activity")
