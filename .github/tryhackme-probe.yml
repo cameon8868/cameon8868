@@ -1,0 +1,23 @@
+name: TryHackMe probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Try public endpoints
+        run: |
+          for path in \
+            "api/v2/public-profile?username=cammeonn" \
+            "api/user/rank/cammeonn" \
+            "api/no-completed-rooms-public/cammeonn" \
+            "api/badges/get/cammeonn" \
+            "api/user/activity-events?username=cammeonn"
+          do
+            echo "=== $path"
+            curl -sL -o out.txt -w "HTTP %{http_code}\n" "https://tryhackme.com/$path" || true
+            head -c 300 out.txt
+            echo
+          done
