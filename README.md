@@ -65,6 +65,7 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
 <p align="center">
   <a href="https://codeforces.com/profile/ggca">
     <img src="https://cp-insights-three.vercel.app/api/profile?handle=ggca&theme=dark&heatmap=true&problemBarGraph=true" width="750" />
+    <img src="https://codeforces-stats-vlx.vercel.app/api/graph?username=ggca&theme=dark" width="750" />
   </a>
 </p>
 
