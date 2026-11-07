@@ -75,3 +75,5 @@ I'm a **full-stack developer** with a focus on **cybersecurity**. I build web ap
     <img src="https://cdn-images.tryhackme.com/public-profile/cammeonn/badge-dark-00d3c2111cf9.png" alt="cammeonn's TryHackMe badge." width="400">
   </a>
 </p>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00ff9c,100:0f2027&height=120&section=footer" width="100%" />
